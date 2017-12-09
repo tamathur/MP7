@@ -2,28 +2,22 @@
 
 public class Map {
 
-	Cell[][] spreadsheetCells;
+	Cell[][] mapCells;
 	
 	public String getGridText()
 	{
-		String abc = "ABCDEFGHIJKL";
-		String columnHeaders = "   |";
-		for(int i = 0; i < abc.length(); i++)
-		{
-			columnHeaders = columnHeaders + abc.substring(i, i+1) + "         |";
-		}
 		
-		String grid = columnHeaders + "\n";
+		
+		String grid = "";
 		String row = "";
 		for(int i = 0; i < getRows(); i++)
 		{
-			row = String.format("%-3d|", i+1);
 			for(int j = 0; j < getCols(); j++)
 			{
-				String loc = abc.substring(j, j+1) + Integer.toString(i+1);
+				int[] loc = {i, j};
 				MapLocation a= new MapLocation(loc);
 //				Cell theCell = getCell(a);
-				row = row + "*" + "|";
+				row = row + ".";
 			}
 			grid = grid + row + "\n";
 			row = "";
@@ -31,25 +25,21 @@ public class Map {
 		return grid;
 	}
 	
-	public int getRows()
-	{
-		return 100;
+	public int getRows() {
+		return 61;
 	}
 
-	public int getCols()
-	{
-		return 100;
+	public int getCols() {
+		return 61;
 	}
 	
-	public Cell getCell(MapLocation loc)
-	{
+	public Cell getCell(MapLocation loc) {
 		int row = loc.getRow();
 		int col = loc.getCol();
-		return spreadsheetCells[row][col];
+		return mapCells[row][col];
 	}
 	
-	public String processCommand(String command)
-	{
+	public String processCommand(String command) {
 		String result = ""; //"result" is the string that will be returned at the end of this method
 //		command = command.trim(); //removes spaces from the ends of the string "command"
 //		if(command.length() == 0)
