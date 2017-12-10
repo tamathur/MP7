@@ -5,8 +5,7 @@ public class Map {
 	Cell[][] mapCells;
 	
 	public String getGridText()
-	{
-		
+	{		
 		
 		String grid = "";
 		String row = "";
@@ -15,7 +14,7 @@ public class Map {
 			for(int j = 0; j < getCols(); j++)
 			{
 				int[] loc = {i, j};
-				MapLocation a= new MapLocation(loc);
+				MapLocation a = new MapLocation(loc);
 //				Cell theCell = getCell(a);
 				row = row + ".";
 			}
