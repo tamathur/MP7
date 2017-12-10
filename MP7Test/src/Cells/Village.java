@@ -8,7 +8,7 @@ package Cells;
 public class Village extends Cell {
 	
 	public Village() {
-		super('A', 0);
+		super('A', 2);
 	}
 
 }

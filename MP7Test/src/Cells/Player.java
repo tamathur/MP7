@@ -18,8 +18,8 @@ public class Player extends Cell {
 	public Player() {
 		super('@', 0);
 		health = 100;
-		water = 10;
-		curedMeat = 10;
+		water = 15;
+		curedMeat = 15;
 	}
 
 }
