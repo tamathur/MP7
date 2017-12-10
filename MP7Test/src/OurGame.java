@@ -4,7 +4,11 @@ import java.awt.event.KeyListener;
 import java.util.Scanner;
 
 
-
+/**
+ * 
+ * @author Kimi
+ *
+ */
 public class OurGame implements KeyListener{
 
 	public static void main(String[] args) {

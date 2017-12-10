@@ -1,8 +1,46 @@
+import Cells.Barrens;
 import Cells.Cell;
+import Cells.EmptyCell;
+import Cells.Player;
 
+/**
+ * 
+ * @author Kimi
+ *
+ */
 public class Map {
 
-	Cell[][] mapCells;
+	private Cell[][] mapCells;
+	
+	private Cell[][] mapCellsSecondLayer;
+	
+	private Player ourPlayer = new Player();
+	int[] playerCoordinates = {15, 15};
+	
+	public static final int MAP_DIMENSIONS = 31;
+	
+	public Map() {
+		mapCells = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
+		mapCellsSecondLayer = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
+		
+		for(int i = 0; i < mapCells.length; i++)
+		{
+			for(int j = 0; j < mapCells[i].length; j++)
+			{
+				mapCells[i][j] = new Barrens();
+				mapCellsSecondLayer[i][j] = new EmptyCell();				
+				//individually assigns each Cell in the spreadsheetCells 2D array to an EmptyCell
+				//(must do this individually or else cell value will be null)
+			
+			}
+		}
+		
+		
+		MapLocation playerLocation = new MapLocation(playerCoordinates);
+		mapCellsSecondLayer[15][15] = ourPlayer;
+	}
+	
+	
 	
 	public String getGridText()
 	{
@@ -13,10 +51,15 @@ public class Map {
 		{
 			for(int j = 0; j < getCols(); j++)
 			{
-				int[] loc = {i, j};
-				MapLocation a = new MapLocation(loc);
-//				Cell theCell = getCell(a);
-				row = row + ".";
+				if (i == playerCoordinates[0] && j == playerCoordinates[1]) {
+					row += ourPlayer.getSymbol() + "  ";
+				} else {
+					int[] loc = {i, j};
+					MapLocation a = new MapLocation(loc);
+					Cell theCell = getCell(a);
+					row = row + theCell.getSymbol() + "  ";
+				}
+				
 			}
 			grid = grid + row + "\n";
 			row = "";
@@ -25,11 +68,11 @@ public class Map {
 	}
 	
 	public int getRows() {
-		return 61;
+		return MAP_DIMENSIONS;
 	}
 
 	public int getCols() {
-		return 61;
+		return MAP_DIMENSIONS;
 	}
 	
 	public Cell getCell(MapLocation loc) {
@@ -38,17 +81,34 @@ public class Map {
 		return mapCells[row][col];
 	}
 	
+	public void printBlankLines() {
+		for (int i = 0; i < MAP_DIMENSIONS; i++) {
+			System.out.println("");
+		}
+	}
+	
 	public String processCommand(String command) {
 		String result = ""; 
 		
 		if (command.equals("L")) {
-			System.out.println("left");
+			playerCoordinates[1] --;
+			printBlankLines();
+			System.out.println(getGridText());
+			
 		} else if (command.equals("R")) {
-			System.out.println("right");
+			playerCoordinates[1] ++;
+			printBlankLines();
+			System.out.println(getGridText());
+			
 		} else if (command.equals("U")) {
-			System.out.println("up");
+			playerCoordinates[0] --;
+			printBlankLines();
+			System.out.println(getGridText());
+			
 		} else if (command.equals("D")) {
-			System.out.println("down");
+			playerCoordinates[0] ++;
+			printBlankLines();
+			System.out.println(getGridText());
 		}
 		
 		//"result" is the string that will be returned at the end of this method
