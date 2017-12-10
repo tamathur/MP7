@@ -1,4 +1,4 @@
-
+import Cells.Cell;
 
 public class Map {
 
