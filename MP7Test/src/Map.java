@@ -39,7 +39,19 @@ public class Map {
 	}
 	
 	public String processCommand(String command) {
-		String result = ""; //"result" is the string that will be returned at the end of this method
+		String result = ""; 
+		
+		if (command.equals("L")) {
+			System.out.println("left");
+		} else if (command.equals("R")) {
+			System.out.println("right");
+		} else if (command.equals("U")) {
+			System.out.println("up");
+		} else if (command.equals("D")) {
+			System.out.println("down");
+		}
+		
+		//"result" is the string that will be returned at the end of this method
 //		command = command.trim(); //removes spaces from the ends of the string "command"
 //		if(command.length() == 0)
 //		{

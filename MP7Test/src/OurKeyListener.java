@@ -66,16 +66,16 @@ public class OurKeyListener {
 	    	 @Override
 	         public void keyReleased(KeyEvent e) {
 	    		 if (e.getExtendedKeyCode() == 37 && leftPressed == true) {
-	    			 System.out.println("left!");
+	    			 System.out.println(ourMap.processCommand("L"));
 	    		 }
 	    		 if (e.getExtendedKeyCode() == 38 && upPressed == true) {
-	    			 System.out.println("up!");
+	    			 System.out.println(ourMap.processCommand("U"));
 	    		 }
 	    		 if (e.getExtendedKeyCode() == 39 && rightPressed == true) {
-	    			 System.out.println("Right!");
+	    			 System.out.println(ourMap.processCommand("R"));
 	    		 }
 	    		 if (e.getExtendedKeyCode() == 40 && downPressed == true) {
-	    			 System.out.println("down!");
+	    			 System.out.println(ourMap.processCommand("D"));
 	    		 }
 	         }
 	              
