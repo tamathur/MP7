@@ -6,6 +6,6 @@ package Cells;
  */
 public class Field extends Cell {
 	public Field() {
-		super(',',(int)(2*Math.random()));
+		super(',',(int)(-21*Math.random()), 0, (int)(2*Math.random()));
 	}
 }

@@ -7,9 +7,13 @@ package Cells;
 public class Cell {
 	/**Every cell has a unique symbol*/
 	private char symbol;
+	/**The x and y coordinates of the Cell in the Cell array*/
 	private int[] coordinates;
+	/**The amount of health the player currently has*/
 	private int health;
+	/**The amount of water the player currently has*/
 	private int water;
+	/**The amount of food the player currently has*/
 	private int food;
 	
 	// Constructor
@@ -39,12 +43,24 @@ public class Cell {
 		return health;
 	}
 	
+	public void setHealth(int setHealth) {
+		this.health = setHealth;
+	}
+	
 	public int getWater() {
 		return water;
 	}
 	
+	public void setWater(int setWater) {
+		this.water = setWater;
+	}
+	
 	public int getFood() {
 		return food;
+	}
+	
+	public void setFood(int setFood) {
+		this.food = setFood;
 	}
 
 }
