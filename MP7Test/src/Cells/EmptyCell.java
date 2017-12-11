@@ -8,6 +8,6 @@ package Cells;
 public class EmptyCell extends Cell{
 	
 	public EmptyCell() {
-		super(' ', 0, 0, 0);
+		super(' ', 0, 0, 0, "EmptyCell");
 	}
 }

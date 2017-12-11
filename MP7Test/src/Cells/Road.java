@@ -7,6 +7,6 @@ package Cells;
  */
 public class Road extends Cell {
 	public Road() {
-		super('#', 0, 0, 0);
+		super('#', 0, 0, 0, "Road");
 	}
 }

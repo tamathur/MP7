@@ -1,7 +1,12 @@
 import Cells.Barrens;
 import Cells.Cell;
+import Cells.DampCave;
+import Cells.DesertedTown;
 import Cells.EmptyCell;
+import Cells.Mine;
+import Cells.Outpost;
 import Cells.Player;
+import Cells.Village;
 
 /**
  * 
@@ -10,34 +15,66 @@ import Cells.Player;
  */
 public class Map {
 
-	private Cell[][] mapCells;
+	private static Cell[][] mapCells;
 	
 	private Cell[][] mapCellsSecondLayer;
 	
-	private Player ourPlayer = new Player();
-	int[] playerCoordinates = {15, 15};
+	private Player ourPlayer;
 	
 	public static final int MAP_DIMENSIONS = 31;
 	
 	public Map() {
 		mapCells = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
 		mapCellsSecondLayer = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
+		ourPlayer  = new Player();
+		ourPlayer.setCoordinates(15, 15);
 		
-		for(int i = 0; i < mapCells.length; i++)
-		{
-			for(int j = 0; j < mapCells[i].length; j++)
+		for(int x = 0; x < mapCells[0].length; x++) {
+			for(int y = 0; y < mapCells.length; y++)
 			{
-				mapCells[i][j] = new Barrens();
-				mapCellsSecondLayer[i][j] = new EmptyCell();				
+				mapCells[x][y] = new Barrens();
+				mapCellsSecondLayer[x][y] = new EmptyCell();				
 				//individually assigns each Cell in the spreadsheetCells 2D array to an EmptyCell
 				//(must do this individually or else cell value will be null)
 			
 			}
 		}
-		
-		
-		MapLocation playerLocation = new MapLocation(playerCoordinates);
 		mapCellsSecondLayer[15][15] = ourPlayer;
+		mapCells[15][15] = new Village(); //places village (home base) in the center of the set map
+		
+		DampCave[] dampCaves = {new DampCave(), 
+								new DampCave(), 
+								new DampCave()};
+		createCells(dampCaves);
+		
+		DesertedTown[] desertedTowns = {new DesertedTown(),
+										new DesertedTown(), 
+										new DesertedTown(),
+										new DesertedTown(),
+										new DesertedTown()};
+		createCells(desertedTowns);
+		
+		Outpost[] outposts = {new Outpost(), 
+								new Outpost()};
+		createCells(outposts);
+		
+		Mine[] mines = {new Mine(), 
+						new Mine()};
+		createCells(mines);
+	}
+	
+	
+	private static void createCells(Cell[] cells) {
+		for (int count = 0; count < cells.length; count++) {
+			int randX = (int) (31 * Math.random());
+			int randY = (int) (31 * Math.random());
+			if (mapCells[randY][randX].getCellType().equals("Barrens")) {
+				cells[count].setCoordinates(randX, randY);
+				mapCells[randY][randX] = cells[count];
+			} else {
+				count--;
+			}
+		}
 	}
 	
 	
@@ -47,16 +84,15 @@ public class Map {
 		
 		String grid = "";
 		String row = "";
-		for(int i = 0; i < getRows(); i++)
+		for(int y = 0; y < getRows(); y++)
 		{
-			for(int j = 0; j < getCols(); j++)
+			for(int x = 0; x < getCols(); x++)
 			{
-				if (i == playerCoordinates[0] && j == playerCoordinates[1]) {
+				if (x == ourPlayer.getCoordinates()[0] && y == ourPlayer.getCoordinates()[1]) {
 					row += ourPlayer.getSymbol() + "  ";
 				} else {
-					int[] loc = {i, j};
-					MapLocation a = new MapLocation(loc);
-					Cell theCell = getCell(a);
+					
+					Cell theCell = mapCells[y][x];
 					row = row + theCell.getSymbol() + "  ";
 				}
 				
@@ -64,7 +100,7 @@ public class Map {
 			grid = grid + row + "\n";
 			row = "";
 		}
-		return grid;
+		return grid.trim();
 	}
 	
 	public int getRows() {
@@ -91,67 +127,27 @@ public class Map {
 		String result = ""; 
 		
 		if (command.equals("L")) {
-			playerCoordinates[1] --;
+			ourPlayer.getCoordinates()[0] --;
 			printBlankLines();
 			System.out.println(getGridText());
 			
 		} else if (command.equals("R")) {
-			playerCoordinates[1] ++;
+			ourPlayer.getCoordinates()[0] ++;
 			printBlankLines();
 			System.out.println(getGridText());
 			
 		} else if (command.equals("U")) {
-			playerCoordinates[0] --;
+			ourPlayer.getCoordinates()[1] --;
 			printBlankLines();
 			System.out.println(getGridText());
 			
 		} else if (command.equals("D")) {
-			playerCoordinates[0] ++;
+			ourPlayer.getCoordinates()[1] ++;
 			printBlankLines();
 			System.out.println(getGridText());
 		}
 		
-		//"result" is the string that will be returned at the end of this method
-//		command = command.trim(); //removes spaces from the ends of the string "command"
-//		if(command.length() == 0)
-//		{
-//			//if user enters an empty command, return an empty string
-//			result = command;
-//		}
-//		else if(command.length() <= 3)
-//		{
-//			//if user enters the location name of a cell (ie A1 or F17), send to the method cellInspection
-//			//cellInspection will return the string that is stored in that cell location
-//			result = cellInspection(command);
-//			
-//		}
-//		else if(command.indexOf("=") >= 0)
-//		{
-//			//if user wants to assign a value to a cell (A1 = "blahblahblah"), send to cellAssignment
-//			//cellAssignment will assign the given value to the given cell location and return getGridText()
-//			result = cellAssignment(command);
-//		}
-//		else if(command.toLowerCase().equals("clear"))
-//		{
-//			
-//			result = clearAll(command);
-//		}
-//		else if(command.toLowerCase().indexOf("clear") >= 0)
-//		{
-//			result = clearCell(command);
-//		}
-//		else if(command.toLowerCase().indexOf("sorta") >= 0)
-//		{
-//			String[] splitCommand = command.split(" ");
-//			sortCellsA(splitCommand[1]);
-//			result = getGridText();
-//		}
-//		else if(command.toLowerCase().indexOf("sortd") >= 0)
-//		{
-//			String[] splitCommand = command.split(" ");
-//			sortCellsD(splitCommand[1]);
-//			result = getGridText();
-//		}
+		
 		return result;
 	}
 

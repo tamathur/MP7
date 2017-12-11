@@ -8,7 +8,7 @@ package Cells;
 public class Player extends Cell {
 	
 	public Player() {
-		super('@', 100, 15, 15);
+		super('@', 100, 15, 15, "Player");
 	}
 
 }

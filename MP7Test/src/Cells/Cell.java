@@ -16,18 +16,25 @@ public class Cell {
 	/**The amount of food the player currently has*/
 	private int food;
 	
+	private String cellType = "";
+	
 	// Constructor
-	public Cell(final char sym, final int h, final int w, final int f) {
+	public Cell(final char sym, final int h, final int w, final int f, final String type) {
 		symbol = sym;
 		coordinates = new int[2];
 		health = h;
 		water = w;
 		food = f;
+		cellType = type;
 	}
 
 	// Getters and Setters
 	public char getSymbol() {
 		return symbol;
+	}
+	
+	public String getCellType() {
+		return cellType;
 	}
 	
 	public int[] getCoordinates() {
