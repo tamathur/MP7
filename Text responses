@@ -1,4 +1,7 @@
 *print health, water, and food units after every move*
+DEATH
+  "the world fades." (if health <= 0)
+
 Barrens
   "an animal leaves a deep wound in your arm." (if Math.abs(difference) > 0)
   "food litters the ground." (if Math.abs(difference) > 0)
@@ -35,6 +38,5 @@ Outpost
   "water and food are replenished." (always)
   "finally a good meal." (always)
 Village
-  "a necessary good rest" (always)
-
+  "a necessary good rest." (always)
   
