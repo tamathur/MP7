@@ -111,44 +111,45 @@ public class Map {
 		return MAP_DIMENSIONS;
 	}
 	
-	public Cell getCell(MapLocation loc) {
-		int row = loc.getRow();
-		int col = loc.getCol();
-		return mapCells[row][col];
-	}
-	
 	public void printBlankLines() {
 		for (int i = 0; i < MAP_DIMENSIONS; i++) {
 			System.out.println("");
 		}
 	}
 	
-	public String processCommand(String command) {
-		String result = ""; 
+	public void processCommand(String command) {
 		
 		if (command.equals("L")) {
 			ourPlayer.getCoordinates()[0] --;
-			printBlankLines();
-			System.out.println(getGridText());
 			
 		} else if (command.equals("R")) {
 			ourPlayer.getCoordinates()[0] ++;
-			printBlankLines();
-			System.out.println(getGridText());
 			
 		} else if (command.equals("U")) {
 			ourPlayer.getCoordinates()[1] --;
-			printBlankLines();
-			System.out.println(getGridText());
 			
 		} else if (command.equals("D")) {
 			ourPlayer.getCoordinates()[1] ++;
-			printBlankLines();
-			System.out.println(getGridText());
 		}
 		
+		int currentWater = ourPlayer.getWater() - 1;
 		
-		return result;
+		int[] currentCoordinates = ourPlayer.getCoordinates();
+		Cell currentCell = mapCells[currentCoordinates[1]][currentCoordinates[0]];
+		
+		int currentHealth = ourPlayer.getHealth() + currentCell.getHealth();
+		int currentFood = ourPlayer.getFood() + currentCell.getFood();
+		currentWater += currentCell.getWater();
+		
+		ourPlayer.setHealth(currentHealth);
+		ourPlayer.setWater(currentWater);
+		ourPlayer.setFood(currentFood);
+		
+		printBlankLines();
+		System.out.println(getGridText());
+		System.out.println("current health: " + currentHealth);
+		System.out.println("current water: " + currentWater);
+		System.out.println("current food: " + currentFood);
 	}
 
 	

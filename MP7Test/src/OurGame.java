@@ -23,7 +23,7 @@ public class OurGame implements KeyListener{
 	    do{
 	    	input = s.nextLine();
 	    	if(!input.equals("quit"))
-	    		System.out.println(ourMap.processCommand(input));
+	    		ourMap.processCommand(input);
 	    }while(!input.equals("quit"));
 	    
 	    
