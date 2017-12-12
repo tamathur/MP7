@@ -3,6 +3,8 @@ import Cells.Cell;
 import Cells.DampCave;
 import Cells.DesertedTown;
 import Cells.EmptyCell;
+import Cells.Field;
+import Cells.Forest;
 import Cells.Mine;
 import Cells.Outpost;
 import Cells.Player;
@@ -39,39 +41,50 @@ public class Map {
 			
 			}
 		}
+		
+		//populates upper left quadrant with forest cells
+		for (int x = 0; x < 15; x++) {
+			for (int y = 0; y < 15; y++) {
+				mapCells[x][y] = new Forest();
+			}
+		}
+		
+		//populates bottom right quadrant with field cells
+		for(int x = 16; x < mapCells[0].length; x++) {
+			for (int y = 16; y < mapCells.length; y++) {
+				mapCells[x][y] = new Field();
+			}
+		}
 		mapCellsSecondLayer[15][15] = ourPlayer;
 		mapCells[15][15] = new Village(); //places village (home base) in the center of the set map
 		
-		DampCave[] dampCaves = {new DampCave(), 
-								new DampCave(), 
-								new DampCave(),
-								new DampCave(),
-								new DampCave()};
+		
+		DampCave[] dampCaves = new DampCave[5];
+		for (int i = 0; i < dampCaves.length; i++) {
+			dampCaves[i] = new DampCave();
+		}
 		createCells(dampCaves);
 		
-		DesertedTown[] desertedTowns = {new DesertedTown(),
-										new DesertedTown(), 
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown(),
-										new DesertedTown()};
+		
+		DesertedTown[] desertedTowns = new DesertedTown[10];
+		for (int i = 0; i < desertedTowns.length; i++) {
+			desertedTowns[i] = new DesertedTown();
+		}
 		createCells(desertedTowns);
+		
 		
 		Outpost[] outposts = {new Outpost(), 
 								new Outpost()};
 		createCells(outposts);
 		
-		Mine[] mines = {new Mine(), 
-						new Mine(),
-						new Mine(),
-						new Mine(),
-						new Mine(),
-						new Mine(),};
+		
+		Mine[] mines = new Mine[6];
+		for (int i = 0; i < mines.length; i++) {
+			mines[i] = new Mine();
+		}
 		createCells(mines);
+		
+		
 	}
 	
 	
@@ -79,7 +92,9 @@ public class Map {
 		for (int count = 0; count < cells.length; count++) {
 			int randX = (int) (31 * Math.random());
 			int randY = (int) (31 * Math.random());
-			if (mapCells[randY][randX].getCellType().equals("Barrens")) {
+			if (mapCells[randY][randX].getCellType().equals("Barrens")
+					||mapCells[randY][randX].getCellType().equals("Field")
+					||mapCells[randY][randX].getCellType().equals("Forest")) {
 				cells[count].setCoordinates(randX, randY);
 				mapCells[randY][randX] = cells[count];
 			} else {
@@ -111,6 +126,9 @@ public class Map {
 			grid = grid + row + "\n";
 			row = "";
 		}
+		grid += "current health: " + ourPlayer.getHealth() + "\n"
+				+ "current water: " + ourPlayer.getWater() + "\n"
+				+ "current food: " + ourPlayer.getFood();
 		return grid.trim();
 	}
 	
@@ -177,9 +195,7 @@ public class Map {
 		
 		printBlankLines();
 		System.out.println(getGridText());
-		System.out.println("current health: " + currentHealth);
-		System.out.println("current water: " + currentWater);
-		System.out.println("current food: " + currentFood);
+		
 		System.out.println();
 		otherMessage(currentHealth, currentFood, currentWater, currentCell);
 		healthMessage(previousHealth - currentHealth, currentCell);
