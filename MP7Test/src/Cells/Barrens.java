@@ -6,6 +6,6 @@ package Cells;
  */
 public class Barrens extends Cell {
 	public Barrens() {
-		super('.', (int)(-26*Math.random()), 0, (int)(3*Math.random()), "Barrens");
+		super('.', (int)(-16*Math.random()), 0, 0, "Barrens");
 	}
 }

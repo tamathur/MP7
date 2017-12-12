@@ -26,7 +26,7 @@ public class Map {
 	public Map() {
 		mapCells = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
 		mapCellsSecondLayer = new Cell[MAP_DIMENSIONS][MAP_DIMENSIONS];
-		ourPlayer  = new Player();
+		ourPlayer = new Player();
 		ourPlayer.setCoordinates(15, 15);
 		
 		for(int x = 0; x < mapCells[0].length; x++) {
@@ -137,9 +137,13 @@ public class Map {
 		int[] currentCoordinates = ourPlayer.getCoordinates();
 		Cell currentCell = mapCells[currentCoordinates[1]][currentCoordinates[0]];
 		
-		int currentHealth = ourPlayer.getHealth() + currentCell.getHealth();
+		int currentHealth = ourPlayer.getHealth() + currentCell.getHealth();		
 		int currentFood = ourPlayer.getFood() + currentCell.getFood();
 		currentWater += currentCell.getWater();
+		
+		int previousHealth = ourPlayer.getHealth();
+		int previousFood = ourPlayer.getFood();
+		int previousWater = ourPlayer.getWater();
 		
 		ourPlayer.setHealth(currentHealth);
 		ourPlayer.setWater(currentWater);
@@ -150,7 +154,134 @@ public class Map {
 		System.out.println("current health: " + currentHealth);
 		System.out.println("current water: " + currentWater);
 		System.out.println("current food: " + currentFood);
+		System.out.println();
+		otherMessage(currentHealth, currentFood, currentWater, currentCell);
+		healthMessage(previousHealth - currentHealth, currentCell);
+		foodMessage(previousFood - currentFood, currentCell);
+		waterMessage(previousWater - currentWater, currentCell);
+
 	}
 
+	public void healthMessage(int difference, Cell current) {
+		if (current.getSymbol() == '.') { //Barrens			
+			if (Math.abs(difference) > 0) {
+				System.out.println("an animal leaves a deep wound in your arm.");
+			}
+		}		
+		if (current.getSymbol() == 'V') { //DampCave			
+			if (Math.abs(difference) > 10) {
+				System.out.println("a giant lizard shambles forward.");
+			} else if (Math.abs(difference) > 0) {
+				System.out.println("a cave lizard attacks.");
+			}
+		}		
+		if (current.getSymbol() == 'O') { //DesertedTown
+			if (Math.abs(difference) > 30) {
+				System.out.println("a beast charges out of a ransacked classroom.");
+			} else if (Math.abs(difference) > 20) {
+				System.out.println("a panicked scavenger bursts through the door, screaming.");
+			} else if (Math.abs(difference) > 10) {
+				System.out.println("a frail man stands defiantly, blocking the path.");
+			} else if (Math.abs(difference) > 0) {
+				System.out.println( "a youth lashes out with a tree branch.");
+			}
+		}		
+		if (current.getSymbol() == ',') { //Field
+			if (Math.abs(difference) > 10) {
+				System.out.println("a snarling beast jumps out of the underbrush.");
+			} else if (Math.abs(difference) > 0) {
+				System.out.println("the grass thrashes wildly as a huge lizard pushes through.");
+			}
+		}
+		if (current.getSymbol() == ';') { //Forest
+			if (Math.abs(difference) > 20) {
+				System.out.println("the shadow of a beast grows larger.");
+			} else if (Math.abs(difference) > 0) {
+				System.out.println("a lizard charges from a branch.");
+			}
+		}
+		
+	}
+	
+	public void foodMessage(int difference, Cell current) {
+		if (current.getSymbol() == 'V') { //DampCave			
+			if (Math.abs(difference) > 0) {
+				System.out.println("some other creature's meal sits in the corner.");
+			}
+		}
+		if (current.getSymbol() == 'O') { //DesertedTown
+			if (Math.abs(difference) > 0) {
+				System.out.println("a stranger's house provides a meal for later.");
+			}
+		}
+		if (current.getSymbol() == ';') { //Forest
+			if (Math.abs(difference) > 0) {
+				System.out.println("inside a tree trunk lies some abonded food.");
+			}
+		}
+		if (current.getSymbol() == 'M') { //Mine
+			if (Math.abs(difference) > 0) {
+				System.out.println("long gone inhabitants kindly left food for the journey.");
+			}
+		}
+
+	}
+	
+	public void waterMessage(int difference, Cell current) {
+		if (current.getSymbol() == 'V') { //DampCave			
+			if (Math.abs(difference) > 0) {
+				System.out.println("water glistens as it falls from the cave walls.");
+			}
+		}
+		if (current.getSymbol() == 'O') { //DesertedTown
+			if (Math.abs(difference) > 0) {
+				System.out.println("a stream of clear water distracts you.");
+			}
+		}
+	}
+	
+	public void otherMessage(int health, int food, int water, Cell current) {
+		if (health <= 0 || food <= 0 || water <= 0) { // if you die the game ends
+			System.out.println("the world fades.");
+			System.exit(0);
+		}
+		if (current.getSymbol() == '.') {
+			if ((int)2*Math.random() == 0) { // Random Barren message
+				System.out.println("the trees are gone. parched earth and blowing dust are poor replacements.");
+			}
+		}
+		if (current.getSymbol() == 'V') { 
+			if ((int)2*Math.random() == 0) { // Random DampCave message
+				System.out.println("the earth here is split, as if bearing an ancient wound.");
+			}
+		}
+		if (current.getSymbol() == 'O') {
+			if ((int)2*Math.random() == 0) { // Random DesertedTown message
+				System.out.println("the town lies abonded, its citizens long dead.");
+			}
+		}
+		if (current.getSymbol() == ',') {
+			if ((int)2*Math.random() == 0) { // Random Field message
+				System.out.println("the trees yeild to dry grass. the yellowed brush rustles in the wind.");
+			}
+		}
+		if (current.getSymbol() == ';') {
+			if ((int)2*Math.random() == 0) { // Random Forest message
+				System.out.println("a wall of gnarled trees rises from the dust. their branches twist into a skeletal canopy overhead.");
+			}
+		}
+		if (current.getSymbol() == 'M') {
+			if ((int)2*Math.random() == 0) { // Random Mine message
+				System.out.println("a safe place in the wilds.");
+			}
+		}
+		if (current.getSymbol() == 'P') { // Outpost message
+			System.out.println("water and food are replenished.");
+			System.out.println("finally a good meal.");
+		}
+		if (current.getSymbol() == 'A') { // Village message
+			System.out.println("a necessary good rest.");
+		}
+	}
 	
 }
