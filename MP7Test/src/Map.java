@@ -107,7 +107,6 @@ public class Map {
 	
 	public String getGridText()
 	{
-		
 		String grid = "";
 		String row = "";
 		for(int y = 0; y < getRows(); y++)
