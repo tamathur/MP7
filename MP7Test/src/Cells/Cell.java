@@ -15,6 +15,8 @@ public class Cell {
 	private int water;
 	/**The amount of food the player currently has*/
 	private int food;
+	/**The amount of steps the player has taken*/
+	private int stepCount;
 	
 	private String cellType = "";
 	
@@ -26,6 +28,7 @@ public class Cell {
 		water = w;
 		food = f;
 		cellType = type;
+		stepCount = 1;
 	}
 
 	// Getters and Setters
@@ -68,6 +71,14 @@ public class Cell {
 	
 	public void setFood(int setFood) {
 		this.food = setFood;
+	}
+
+	public int getStepCount() {
+		return stepCount;
+	}
+
+	public void setStepCount(int stepCount) {
+		this.stepCount = stepCount;
 	}
 
 }

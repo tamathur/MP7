@@ -144,18 +144,24 @@ public class Map {
 		}
 		
 		int currentWater = ourPlayer.getWater() - 1;
+		int currentFood = ourPlayer.getFood();
+		if (ourPlayer.getStepCount() % 2 == 0) {
+			currentFood = ourPlayer.getFood() - 1;
+		}
 		
 		int[] currentCoordinates = ourPlayer.getCoordinates();
 		Cell currentCell = mapCells[currentCoordinates[1]][currentCoordinates[0]];
 		
-		int currentHealth = ourPlayer.getHealth() + currentCell.getHealth();		
-		int currentFood = ourPlayer.getFood() + currentCell.getFood();
+		int currentStepCount = ourPlayer.getStepCount() + currentCell.getStepCount();
+		int currentHealth = ourPlayer.getHealth() + currentCell.getHealth();
+		currentFood += currentCell.getFood();
 		currentWater += currentCell.getWater();
 		
 		int previousHealth = ourPlayer.getHealth();
 		int previousFood = ourPlayer.getFood();
 		int previousWater = ourPlayer.getWater();
 		
+		ourPlayer.setStepCount(currentStepCount);
 		ourPlayer.setHealth(currentHealth);
 		ourPlayer.setWater(currentWater);
 		ourPlayer.setFood(currentFood);

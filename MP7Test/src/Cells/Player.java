@@ -5,10 +5,8 @@ package Cells;
  * @author tmath
  *
  */
-public class Player extends Cell {
-	
+public class Player extends Cell {	
 	public Player() {
-		super('@', 100, 20, 20, "Player");
+		super('@', 100, 15, 15, "Player");
 	}
-
 }
