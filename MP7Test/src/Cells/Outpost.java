@@ -6,7 +6,7 @@ package Cells;
  */
 public class Outpost extends Cell {
 	public Outpost() {
-		super('P', 10, 15, 15, "Outpost");
+		super('P', 20, 15, 15, "Outpost");
 	}
 
 }

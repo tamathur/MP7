@@ -162,6 +162,15 @@ public class Map {
 		int previousWater = ourPlayer.getWater();
 		
 		ourPlayer.setStepCount(currentStepCount);
+		if (currentHealth > 100) {
+			currentHealth = 100;
+		}
+		if (currentFood > 100) {
+			currentFood = 100;
+		}
+		if (currentWater > 100) {
+			currentWater = 100;
+		}
 		ourPlayer.setHealth(currentHealth);
 		ourPlayer.setWater(currentWater);
 		ourPlayer.setFood(currentFood);
@@ -262,35 +271,23 @@ public class Map {
 			System.out.println("the world fades.");
 			System.exit(0);
 		}
-		if (current.getSymbol() == '.') {
-			if ((int)2*Math.random() == 0) { // Random Barren message
-				System.out.println("the trees are gone. parched earth and blowing dust are poor replacements.");
-			}
+		if (current.getSymbol() == '.') { // Random Barren message
+			System.out.println("the trees are gone. parched earth and blowing dust are poor replacements.");
 		}
-		if (current.getSymbol() == 'V') { 
-			if ((int)2*Math.random() == 0) { // Random DampCave message
-				System.out.println("the earth here is split, as if bearing an ancient wound.");
-			}
+		if (current.getSymbol() == 'V') { // Random DampCave message
+			System.out.println("the earth here is split, as if bearing an ancient wound.");
 		}
-		if (current.getSymbol() == 'O') {
-			if ((int)2*Math.random() == 0) { // Random DesertedTown message
-				System.out.println("the town lies abonded, its citizens long dead.");
-			}
+		if (current.getSymbol() == 'O') { // Random DesertedTown message
+			System.out.println("the town lies abonded, its citizens long dead.");
 		}
-		if (current.getSymbol() == ',') {
-			if ((int)2*Math.random() == 0) { // Random Field message
-				System.out.println("the trees yeild to dry grass. the yellowed brush rustles in the wind.");
-			}
+		if (current.getSymbol() == ',') { // Random Field message			
+			System.out.println("the trees yeild to dry grass. the yellowed brush rustles in the wind.");		
 		}
-		if (current.getSymbol() == ';') {
-			if ((int)2*Math.random() == 0) { // Random Forest message
-				System.out.println("a wall of gnarled trees rises from the dust. their branches twist into a skeletal canopy overhead.");
-			}
+		if (current.getSymbol() == ';') { // Random Forest message
+			System.out.println("a wall of gnarled trees rises from the dust. their branches twist into a skeletal canopy overhead.");
 		}
-		if (current.getSymbol() == 'M') {
-			if ((int)2*Math.random() == 0) { // Random Mine message
-				System.out.println("a safe place in the wilds.");
-			}
+		if (current.getSymbol() == 'M') { // Random Mine message
+			System.out.println("a safe place in the wilds.");
 		}
 		if (current.getSymbol() == 'P') { // Outpost message
 			System.out.println("water and food are replenished.");
