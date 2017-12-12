@@ -17,7 +17,7 @@
   //"a panicked scavenger bursts through the door, screaming." (if Math.abs(difference) > 20)
   //"a frail man stands defiantly, blocking the path." (if Math.abs(difference) > 10)
   //"a beast charges out of a ransacked classroom." (if Math.abs(difference) > 30)
-  //"a stream of clear water." ((if Math.abs(difference) > 0)
+  //"a stream of clear water distracts you." ((if Math.abs(difference) > 0)
   //"a stranger's house provides a meal for later." (if Math.abs(difference) > 0)
 //Field
   //"the grass thrashes wildly as a huge lizard pushes through." (if Math.abs(difference) > 0)
