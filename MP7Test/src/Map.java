@@ -44,11 +44,18 @@ public class Map {
 		
 		DampCave[] dampCaves = {new DampCave(), 
 								new DampCave(), 
+								new DampCave(),
+								new DampCave(),
 								new DampCave()};
 		createCells(dampCaves);
 		
 		DesertedTown[] desertedTowns = {new DesertedTown(),
 										new DesertedTown(), 
+										new DesertedTown(),
+										new DesertedTown(),
+										new DesertedTown(),
+										new DesertedTown(),
+										new DesertedTown(),
 										new DesertedTown(),
 										new DesertedTown(),
 										new DesertedTown()};
@@ -59,7 +66,11 @@ public class Map {
 		createCells(outposts);
 		
 		Mine[] mines = {new Mine(), 
-						new Mine()};
+						new Mine(),
+						new Mine(),
+						new Mine(),
+						new Mine(),
+						new Mine(),};
 		createCells(mines);
 	}
 	
