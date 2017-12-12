@@ -1,42 +1,40 @@
-*print health, water, and food units after every move*
-DEATH
-  "the world fades." (if health <= 0)
+//*print health, water, and food units after every move* done
+//DEATH
+  //"the world fades." (if health <= 0) done
 
-Barrens
-  "an animal leaves a deep wound in your arm." (if Math.abs(difference) > 0)
-  "food litters the ground." (if Math.abs(difference) > 0)
-  "the trees are gone. parched earth and blowing dust are poor replacements." (always)
-DampCave
-  "a giant lizard shambles forward." (if Math.abs(difference) > 10)
-  "a cave lizard attacks." (if Math.abs(difference) > 0)
-  "water drips from the cave walls." (always)
-  "the earth here is split, as if bearing an ancient wound." (always)
-  "some other creatures meal sits in the corner." (if Math.abs > 0)
-DesertedTown
-  "the town lies abonded, its citizens long dead." (always)
-  "a youth lashes out with a tree branch." (if Math.abs(difference) > 0)
-  "a panicked scavenger bursts through the door, screaming." (if Math.abs(difference) > 20)
-  "a frail man stands defiantly, blocking the path." (if Math.abs(difference) > 10)
-  "a beast charges out of a ransacked classroom." (if Math.abs(difference) > 30)
-  "a faucet runs freely." ((if Math.abs(difference) > 0)
-  "a stranger's house provides a meal for later." (if Math.abs(difference) > 0)
-Field
-  "the grass thrashes wildly as a huge lizard pushes through." (if Math.abs(difference) > 0)
-  "a snarling beast jumps out of the underbrush." (if Math.abs(difference) > 10)
-  "the grass parts way to a fresh meal." (if Math.abs(difference) > 0)
-  "the trees yeild to dry grass. the yellowd brush rustles in the wind." (always)
-Forest
-  "a wall of gnarled trees rises from the dust. their branches twist into a skeletal canopy overhead." (always)
-  "the shadow of a beast grows larger." (if Math.abs(difference) > 20)
-  "a lizard charges from a branch." (if Math.abs(difference) > 0)
-  "inside a tree trunk lies a pile of abonded nuts." (if Math.abs(difference) > 0)
-Mine
-  "a safe place in the wilds." (always)
-  "long gone inhabitants kindly leave food for the journey." (if Math.abs(difference) > 0)
+//Barrens
+  //"an animal leaves a deep wound in your arm." (if Math.abs(difference) > 0) done
+  //"the trees are gone. parched earth and blowing dust are poor replacements." (always) done
+//DampCave
+  //"a giant lizard shambles forward." (if Math.abs(difference) > 10)
+  //"a cave lizard attacks." (if Math.abs(difference) > 0)
+  //"water glistens as it drips from the cave walls." (always)
+  //"the earth here is split, as if bearing an ancient wound." (always)
+  //"some other creature's meal sits in the corner." (if Math.abs > 0)
+//DesertedTown
+  //"the town lies abonded, its citizens long dead." (always)
+  //"a youth lashes out with a tree branch." (if Math.abs(difference) > 0)
+  //"a panicked scavenger bursts through the door, screaming." (if Math.abs(difference) > 20)
+  //"a frail man stands defiantly, blocking the path." (if Math.abs(difference) > 10)
+  //"a beast charges out of a ransacked classroom." (if Math.abs(difference) > 30)
+  //"a stream of clear water." ((if Math.abs(difference) > 0)
+  //"a stranger's house provides a meal for later." (if Math.abs(difference) > 0)
+//Field
+  //"the grass thrashes wildly as a huge lizard pushes through." (if Math.abs(difference) > 0)
+  //"a snarling beast jumps out of the underbrush." (if Math.abs(difference) > 10)
+  //"the trees yeild to dry grass. the yellowed brush rustles in the wind." (always)
+//Forest
+  //"a wall of gnarled trees rises from the dust. their branches twist into a skeletal canopy overhead." (always)
+  //"the shadow of a beast grows larger." (if Math.abs(difference) > 20)
+  //"a lizard charges from a branch." (if Math.abs(difference) > 0)
+  //"inside a tree trunk lies some abonded food." (if Math.abs(difference) > 0)
+//Mine
+  //"a safe place in the wilds." (always)
+  //"long gone inhabitants kindly left food for the journey." (if Math.abs(difference) > 0)
   "in the corner lies a bucket of clean water." (if Math.abs(difference) > 0)
-Outpost
-  "water and food are replenished." (always)
-  "finally a good meal." (always)
-Village
-  "a necessary good rest." (always)
+//Outpost
+  //"water and food are replenished." (always)
+  //"finally a good meal." (always)
+//Village
+  //"a necessary good rest." (always)
   
